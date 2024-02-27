@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+<h1>Finns i shopen</h1>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+    </tr>
+    <tr th:each="item : ${items}">
+        <td th:text="${item.name}"></td>
+        <td th:text="${item.price}"></td>
+        <td th:text="${item.quantity}"></td>
+    </tr>
+</table>
+
+<h2>Lägg till nytt föremål</h2>
+<form id="addItemForm">
+    <label for="name">Namn:</label>
+    <input type="text" id="name" name="name"><br>
+    <label for="price">Pris:</label>
+    <input type="text" id="price" name="price"><br>
+    <label for="quantity">Antal:</label>
+    <input type="text" id="quantity" name="quantity"><br>
+    <button type="button" onclick="addItem()">Lägg till</button>
+</form>
+
+<script>
+    function addItem() {
+        var form = document.getElementById("addItemForm");
+        var formData = new FormData(form);
+        var jsonObject = {};
+
+        formData.forEach(function(value, key){
+            jsonObject[key] = value;
+        });
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/api/shop", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                // Reload the page after successful addition
+                window.location.href = "/about";
+            } else {
+                // Handle errors if necessary
+                console.error("Error adding item:", xhr.statusText);
+            }
+        };
+        xhr.send(JSON.stringify(jsonObject));
+    }
+</script>
+
+<p>Klicka <a th:href="@{/}">här</a> för att gå tillbaka till startsidan.</p>
+</body>
+</html>
