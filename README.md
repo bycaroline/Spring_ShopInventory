@@ -14,7 +14,7 @@ Item has the following attributes:
 ## Endpoints
 
 The endpoints are the methods that are used to interact with the database.
-The endpoints are: 
+The endpoints are:
 
 * "/" : home page
 * "/about" : about page showing info from the api requests
