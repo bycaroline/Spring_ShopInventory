@@ -4,10 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>About</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-<h1>Finns i shopen</h1>
+<h1>In the shop</h1>
 <table>
     <tr>
         <th>Name</th>
@@ -21,7 +20,21 @@
     </tr>
 </table>
 
-<h2>Lägg till nytt föremål</h2>
+<h1>Items that are low in stock</h1>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+    </tr>
+    <tr th:each="item : ${lowQuantityItems}">
+        <td th:text="${item.name}"></td>
+        <td th:text="${item.price}"></td>
+        <td th:text="${item.quantity}"></td>
+    </tr>
+</table>
+
+<h2>Add new item</h2>
 <form id="addItemForm">
     <label for="name">Namn:</label>
     <input type="text" id="name" name="name"><br>
@@ -32,6 +45,7 @@
     <button type="button" onclick="addItem()">Lägg till</button>
 </form>
 
+<!--this transforms Json to a JsonObject and XMLHttpRequest object. -->
 <script>
     function addItem() {
         var form = document.getElementById("addItemForm");
