@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Controller class responsible for handling api requests related to the shop.
+ */
 @RestController
 @RequestMapping("api/shop")
 public class ShopController {
@@ -58,6 +61,15 @@ public class ShopController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    /**
+     * Method for finding out which items needs to be restocked.
+     */
+    @GetMapping("/search/quantity")
+    public List<Item> getLowQuantityItems(){
+        int threshold = 2;
+        return shopRepository.getLowQuantityItems(threshold);
     }
 
 }
