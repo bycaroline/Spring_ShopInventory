@@ -29,23 +29,26 @@ public class WebController {
     }
 
     @GetMapping("/")
-    public String home(Model model){
-        model.addAttribute("message", "Välkommen till Shop");
+    public String home(Model model) {
+        model.addAttribute("message", "Welcome to the shop inventory!");
         return "home";
     }
 
     @GetMapping("/about")
     public String about(Model model) {
+         // Fetches all items from the shop API and ads them to the model as an attribute
         Item[] items = restTemplate.getForObject(SHOP_CONTROLLER_BASE_URL + "/api/shop", Item[].class);
         model.addAttribute("items", items);
 
-//        Item [] lowQuantityItems = restTemplate.getForObject(SHOP_CONTROLLER_BASE_URL+ "/api/shop" + "/search/quantity", Item[].class);
-//        model.addAttribute("lowQuantityItems", lowQuantityItems );
+         //Sends a request to the shop API to retrieve items with low quantity
+         //Extracts the response body containing items with low quantity
+         //Adds the low quantity items to the model attribute "lowQuantityItems"
 
         ResponseEntity<Item[]> response = restTemplate.getForEntity(SHOP_CONTROLLER_BASE_URL + "/api/shop/search/quantity", Item[].class);
         Item[] lowQuantityItems = response.getBody();
         model.addAttribute("lowQuantityItems", lowQuantityItems);
 
+         //Returns the name of the view template to render, in this case, "about"
         return "about";
     }
 }

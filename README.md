@@ -1,10 +1,11 @@
 ## Shop Inventory Project
 
-This is a shop inventory project I created using Java, Spring Web, Spring data JPA, h2 database and ThymeLeaf.
+This is project I created using Java, Spring Web, Spring data JPA, h2 database and ThymeLeaf. It is a shop inventory and has a simple frontend to see the items in the shop and which items are low in stock. 
+All CRUD operations are set up but only a few are currently set up in the frontend. These are create a new item and to see which items are low in stock. 
 
 ## Models
 
-The model is a simple class that contains the attributes of the object.In this case it is the shop item. 
+The prroject has one model and it is a simple class that contains the attributes of the object.In this case it is the shop item. 
 Item has the following attributes:
 * id
 * name
@@ -23,7 +24,7 @@ The endpoints are:
 * "/api/shop/{id}" : get request for find item by id
 * "/api/shop/{id}" : put request for update item
 * "/api/shop/{id}" : delete request for delete item
-* "/api/shop/search/quantity" : get request for items in low stock
+* "/api/shop/search/quantity" : get request for items that are low in stock
 
 
 
