@@ -80,7 +80,7 @@ public class ShopController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteItem(@PathVariable Long id) {
+    public ResponseEntity<?> deleteItem(@PathVariable Long id) {
         shopService.deleteItem(id);
         return new ResponseEntity<>(HttpStatus.OK);
 
