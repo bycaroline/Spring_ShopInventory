@@ -7,6 +7,7 @@ import org.springframework.web.client.RestTemplate;
 
 /**
  * Configuration class for application beans.
+ * RestTemplate is a Spring class used for making HTTP requests.
  */
 @Configuration
 public class AppConfig {
